@@ -13,6 +13,9 @@ const PORT = 8080;
 // Middleware to parse JSON bodies
 app.use(express.urlencoded({ extended: true }));
 
+// Middleware to serve static files from the 'public' directory
+app.use(express.static("public"))
+
 // GET - /welcome - Responds with a welcome message
 app.get("/welcome", (req, res) => {
     res.send("Happy Wednesday! No class tomorrow!")
