@@ -128,6 +128,26 @@ app.put("/animals/:id", (req, res) => {
     res.json(updatedAnimal);
 })
 
+// PATCH - /animals/:id - partially update an existing animal record by id
+app.patch("/animals/:id", (req, res) => {
+    const animalId = parseInt(req.params.id, 10);
+    const animalIndex = animals.findIndex(a => a.id === animalId);
+
+    if (animalIndex === -1) {
+        return res.status(404).send('Animal not found');
+    }
+
+    const { type, name, age, favoriteFoods } = req.body;
+    const animal = animals[animalIndex];
+
+    if (type) animal.type = type;
+    if (name) animal.name = name;
+    if (age) animal.age = parseInt(age, 10);
+    if (favoriteFoods) animal.favoriteFoods = favoriteFoods;
+
+    res.json(animal);
+})
+
 // DELETE - /animals/:id - delete an animal by id
 app.delete("/animals/:id", (req, res) => {
     const animalId = parseInt(req.params.id, 10);
