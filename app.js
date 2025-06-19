@@ -138,7 +138,7 @@ app.delete("/animals/:id", (req, res) => {
     }
 
     animals.splice(animalIndex, 1);
-    res.status(204).send(); // No content
+    res.json({ message: 'Animal deleted successfully' });
 })
 
 // Start the server and listen on the specified port
