@@ -161,6 +161,12 @@ app.delete("/animals/:id", (req, res) => {
     res.json({ message: 'Animal deleted successfully' });
 })
 
+// DELETE - /animals - delete all animals
+app.delete("/animals", (req, res) => {
+    animals.length = 0; // Clear the array
+    res.json({ message: 'All animals deleted successfully' });
+})
+
 // Start the server and listen on the specified port
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
